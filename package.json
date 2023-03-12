@@ -1,0 +1,24 @@
+{
+  "name": "bookshala",
+  "version": "1.0.0",
+  "description": "Library management system",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaquib4/BookShala.git"
+  },
+  "author": "Shauib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaquib4/BookShala/issues"
+  },
+  "homepage": "https://github.com/shaquib4/BookShala#readme",
+  "devDependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21"
+  }
+}
