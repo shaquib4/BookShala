@@ -19,6 +19,83 @@ router.get("/", (req, res) => {
     data: books,
   });
 });
+
+/**
+ * Route: /book
+ * Method: POST
+ * Access: public
+ * Description: Add new books
+ * Parameter:None
+ */
+router.post("/",(req,res)=>{
+  const {id , name ,author ,genre, price, publisher} = req.body;
+
+  const book = books.find((each)=> each.id===id)
+
+  if(book){
+     return res.status(404).json({
+        success:false,
+        message: "Book already exist"
+     })
+  }
+
+  books.push({
+    id,
+    name,
+    author,
+    genre,
+    price,
+    publisher,
+  })
+
+  return res.status(200).json({
+       success:true,
+       message: " New Book Added Successfully",
+       data: books
+  })
+
+
+
+})
+
+/**
+ * Route: /book/:id
+ * Method: PUT
+ * Access: public
+ * Description: Update book by id
+ * Parameter:id
+ */
+
+router.put("/:id",(req,res)=>{
+  const {data} = req.body
+  const {id} = req.params
+
+  const book = books.find((each)=>each.id===id)
+
+  if(!book){
+    return res.status(404).json({
+       status:false,
+       message:"Book does not Exist!"
+
+    })
+  }
+  
+  const updatedBookData = books.map((each)=>{
+     if(each.id===id){
+      return{
+        ...each,
+        ...data,
+      }
+     }
+     return each
+  })
+
+  return res.status(200).json({
+    success:true,
+    message: "Book Data Updated !!",
+    data: updatedBookData,
+})
+})
 /**
  * Route: /book/issued
  * Method: GET
